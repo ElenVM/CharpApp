@@ -1,6 +1,6 @@
 package commands;
 
-public class MessageCommand implements AbstractCommand {
+public class MessageCommand implements Command {
 	
 	String message ;
 

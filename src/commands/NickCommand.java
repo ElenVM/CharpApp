@@ -1,6 +1,6 @@
 package commands;
 
-public class NickCommand implements AbstractCommand{
+public class NickCommand implements Command {
 	String nick;
 	boolean busy;
 	

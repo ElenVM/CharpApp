@@ -1,6 +1,6 @@
 package commands;
 
-public class AcceptRejectCommand implements AbstractCommand {
+public class AcceptRejectCommand implements Command {
 	String type;
 
 	public AcceptRejectCommand(String type) {

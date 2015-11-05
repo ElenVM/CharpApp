@@ -1,5 +1,5 @@
 package commands;
 
-public class DisconnectCommand implements AbstractCommand {
+public class DisconnectCommand implements Command {
 
 }

@@ -1,37 +1,78 @@
 package tcpConnection;
 
-import javax.swing.AbstractCellEditor;
+import commands.Command;
+import commands.NickCommand;
 
-import commands.AbstractCommand;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
 
 public class Connection {
 
-	private CallListener listener;
-	private CommandListener clistener;
-	
+	Socket socket;
+	public Connection(){
+		socket = new Socket();
+	}
 	
 	public void sendNickHello(String nick){
-		//Ч отослать УChatApp 2015 user uuuuФ;
+		try {
+			DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+			out.writeUTF("ChatApp 2015 user " + nick);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void sendNickBusy(String nick){
+		try {
+			DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+			out.writeUTF("ChatApp 2015 user " + nick + "busy");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		// Ч отослать УChatApp 2015 user uuuu busyФ;
 	}
 
-	public void accept(){ 
+	public void accept(){
+		try {
+			DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+			out.writeUTF("Accepted");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		//Ч отослать УAccptedФ;
 	}
 
 	public void reject(){
+		try {
+			DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+			out.writeUTF("Reject");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		disconnect();
 		// Ч и т.д. согласно протоколу. 5. sendMessage(Message)
 	}
 
 	public void disconnect(){
-		
+		try {
+			DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+			out.writeUTF("Disconnect");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
-	public AbstractCommand receive(){
-		// Ч блокирующее получение вход€щей команды (т.е. с ожиданием)
+	public Command receive(){
+	//	Command command;
+		try{
+			DataInputStream in = new DataInputStream(socket.getInputStream());
+			String string = in.readUTF();
+	//		command = new NickCommand(string,true);
+		}catch (IOException e){
+			e.printStackTrace();
+		}
 		return null;
 	}
 
