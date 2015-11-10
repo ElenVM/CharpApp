@@ -3,19 +3,28 @@ package commands;
 public class AcceptRejectCommand implements Command {
 	String type;
 
-	public AcceptRejectCommand(String type) {
-		super();
-		this.type = type;
-	}
-
-	public String getType() {
+	@Override
+	public String getCmdText() {
 		return type;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	@Override
+	public void setCmdText(String text) {
+		type = text;
 	}
-	
-	
 
+	@Override
+	public String getCmdClass() {
+		return "AcceptRejectCommand";
+	}
+
+	@Override
+	public boolean getCmdStatus() {
+		return false;
+	}
+
+	@Override
+	public void setCmdStatus(boolean status) {
+
+	}
 }

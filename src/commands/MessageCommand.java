@@ -4,20 +4,28 @@ public class MessageCommand implements Command {
 	
 	String message ;
 
-	
-	
-	public MessageCommand(String message) {
-		super();
-		this.message = message;
-	}
-
-	public String getMessage() {
+	@Override
+	public String getCmdText() {
 		return message;
 	}
 
-	public void setMessage(String message) {
-		this.message = message;
+	@Override
+	public void setCmdText(String text) {
+		message= text;
 	}
-	
 
+	@Override
+	public String getCmdClass() {
+		return "MessageClass";
+	}
+
+	@Override
+	public boolean getCmdStatus() {
+		return false;
+	}
+
+	@Override
+	public void setCmdStatus(boolean status) {
+
+	}
 }
