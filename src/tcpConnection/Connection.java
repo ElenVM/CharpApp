@@ -6,6 +6,7 @@ import commands.NickCommand;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Connection {
@@ -14,7 +15,19 @@ public class Connection {
 	public Connection(){
 		socket = new Socket();
 	}
-	
+	public Connection(String ip, int port){
+		try {
+			socket = new Socket(ip,port);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+
+	public Connection(Socket socket){
+		this.socket = socket;
+	}
+
 	public void sendNickHello(String nick){
 		try {
 			DataOutputStream out = new DataOutputStream(socket.getOutputStream());
@@ -27,7 +40,7 @@ public class Connection {
 	public void sendNickBusy(String nick){
 		try {
 			DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-			out.writeUTF("ChatApp 2015 user " + nick + "busy");
+			out.writeUTF("ChatApp 2015 user " + nick + " busy");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
